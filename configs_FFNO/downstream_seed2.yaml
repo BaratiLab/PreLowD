@@ -1,0 +1,47 @@
+# model:
+in_snapshots:
+- 1
+out_snapshots:
+- 1
+dt:
+- 1
+skip:
+- 0
+n_layers:
+- 4
+ffno_width:
+- 128
+fourier_modes:
+- 16
+share_fourier:
+- 1
+
+# training:
+rollout:
+- 1
+seed:
+- 2
+iters:
+- 5000
+batch_size:
+- 64
+optimizer:
+- AdamW
+frac_train_data:
+- 0.000125
+- 0.00025
+- 0.0005
+- 0.001
+- 0.002
+- 0.004
+- 0.008
+- 0.016
+- 0.032
+- 0.064
+- 0.128
+
+# validation:
+val_iters:
+- 50,500,5000
+val_rollouts:
+- 1,5

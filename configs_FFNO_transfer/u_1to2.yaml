@@ -1,0 +1,31 @@
+# transfer learning:
+transfer_in_vars:
+- all
+transfer_in_vars_scalers:
+- ''
+tune_in_vars:
+- all
+
+transfer_fourier_layers:
+- all
+transfer_fourier_scalers:
+- ''
+transfer_ff_layers:
+- all
+tune_fourier_layers:
+- all
+- ''
+- 0,
+- 3,
+tune_ff_layers:
+- all
+- ''
+- 0,
+- 3,
+
+transfer_out_vars:
+- all
+transfer_out_vars_scalers:
+- ''
+tune_out_vars:
+- all

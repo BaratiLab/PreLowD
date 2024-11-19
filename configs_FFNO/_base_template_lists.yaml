@@ -1,0 +1,94 @@
+data_dir:
+- /media/pouya/DATA1/PDE_data/FPNO_data
+data_ndims:
+- 1
+data_train:
+- null
+data_train_t_start:
+- null
+data_train_t_end:
+- null
+data_train_dt:
+- null
+data_train_rx:
+- null
+data_val:
+- null
+data_val_t_start:
+- null
+data_val_t_end:
+- null
+data_val_dt:
+- null
+data_val_rx:
+- null
+val_size:
+- 0.2
+val_mode:
+- random
+val_seed:
+- 0
+
+# model:
+in_snapshots:
+- 1
+out_snapshots:
+- 1
+dt:
+- 1
+skip:
+- 0
+n_layers:
+- 4
+ffno_width:
+- 128
+fourier_modes:
+- 16
+share_fourier:
+- 0
+
+# training:
+rollout:
+- 1
+seed:
+- 0
+iters:
+- 5000
+batch_size:
+- 64
+optimizer:
+- AdamW
+frac_train_data:
+- 1.0
+
+# validation:
+val_iters:
+- 5000,
+val_rollouts:
+- 1,5
+
+# transfer learning:
+transfer_from:
+- ''
+transfer_in_vars:
+- ''
+transfer_in_vars_scalers:
+- ''
+tune_in_vars:
+- ''
+transfer_fourier_layers:
+- ''
+transfer_fourier_scalers:
+- ''
+transfer_ff_layers:
+- ''
+tune_fourier_layers:
+- ''
+tune_ff_layers:
+- ''
+transfer_out_vars:
+- ''
+transfer_out_vars_scalers:
+- ''
+tune_out_vars:
+- ''

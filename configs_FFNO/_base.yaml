@@ -1,0 +1,244 @@
+# THIS IS THE MAIN CONFIG FILE USED TO GENERATE THE ARGUMENT PARSER
+
+# DO NOT CHANGE OR MODIFY THIS FILE
+
+# DATA LOCATION AND LOADING SETTINGS ############################################
+
+data_dir:
+  type: str
+  help: Path to the data directory
+  default: /media/pouya/DATA1/PDE_data/FPNO_data
+
+# train dataset
+
+data_ndims:
+  type: int
+  help: Number of spatial dimensions
+  default: 1
+
+data_train:
+  type: str
+  help: Path to the train data file relative to data_dir
+  default: null
+
+# these were used for unpreprocessed datasets. You will not need them here:
+
+data_train_t_start:
+  type: int
+  help: starting time index when loading the train data (inclusive)
+  default: null
+
+data_train_t_end:
+  type: int
+  help: ending time index when loading the train data (exclusive)
+  default: null
+
+data_train_dt:
+  type: int
+  help: loading dt of the train data
+  default: null
+
+data_train_rx:
+  type: int
+  help: loading spatial resolution of the train data
+  default: null
+
+# validation dataset 
+# Can be the same as the training data
+
+data_val:
+  type: str
+  help: Path to the validation data file relative to data_dir. If null, part of the training data is used for validation
+  default: null
+
+data_val_t_start:
+  type: int
+  help: starting time index when loading the validation data
+  default: null
+
+data_val_t_end:
+  type: int
+  help: ending time index when loading the validation data
+  default: null
+
+data_val_dt:
+  type: int
+  help: loading dt of the validation data
+  default: null
+
+data_val_rx:
+  type: int
+  help: loading spatial resolution of the validation data
+  default: null
+
+# data split setting
+
+val_size:
+  type : float
+  help: Fraction of the training data used for validation
+  default: 0.2
+
+val_mode:
+  type: str
+  help: Mode of validation data selection from the whole dataset
+  choices: [random, top, bottom, middle]
+  default: random
+
+val_seed:
+  type : int
+  help: Torch manual seed for the random selection of the validation set
+  default: 0
+
+# model setting (FFNO)
+
+in_snapshots:
+  type: int
+  help: Number of input snapshots
+  default: 1
+
+out_snapshots:
+  type: int
+  help: Number of output snapshots
+  default: 1
+
+dt:
+  type: int
+  help: prediction dt
+  default: 1
+
+skip:
+  type: int
+  help: Number of snapshots to skip when predicting the future
+  default: 0
+
+n_layers:
+  type : int
+  help: Number of layers of the 1D model
+  default: 4
+
+ffno_width:
+  type: int
+  help: Width of the FFNO model
+  default: 128
+
+fourier_modes:
+  type: int
+  help: Number of the fourier modes (in all dimensions)
+  default: 16
+
+share_fourier:
+  type: int
+  help: If 1 (true), the fourier weights are shared across dimensions
+  default: 0
+
+# training settings
+
+rollout:
+  type : int
+  help: Number of rollout steps
+  default: 1
+
+seed:
+  type : int
+  help: random seed of the experiment (used for everything except the data split)
+  default: 0
+
+iters:
+  type : int
+  help: Number of training iterations
+  default: 5000
+
+batch_size:
+  type : int
+  help: Batch size
+  default: 64
+
+optimizer:
+  type: str
+  help: Optimizer for the training. Should be in torch.optim
+  default: AdamW
+
+frac_train_data:
+  type : float
+  help: Fraction of the training data used in training
+  default: 1.0
+
+# validations:
+
+val_iters:
+  type: str
+  help: iterations that the validation is performed
+  default: 5000,
+
+val_rollouts:
+  type: str
+  help: the rollouts that the validation is performed with
+  default: 1,5
+
+# transfer learning settings ################################################################
+
+transfer_from:
+  type: str
+  help: Path to the pre-trained model directory. The code will find an matching pretrained model there.
+  default: ''
+
+# in_vars
+
+transfer_in_vars:
+  type: str
+  help: variables for which the input projection is transferred from the pre-trained model
+  default: ''
+
+transfer_in_vars_scalers:
+  type: str
+  help: scalers for the input projection variables (while projecting)
+  default: ''
+
+tune_in_vars:
+  type: str
+  help: variables for which the input projection is tuned
+  default: ''
+
+# spectral layers
+
+transfer_fourier_layers:
+  type: str
+  help: comma separated list of layer indexes for which the fourier weights are transferred
+  default: ''
+
+transfer_fourier_scalers:
+  type: str
+  help: comma separated list of scalers for the fourier weights (while projecting)
+  default: null
+
+transfer_ff_layers:
+  type: str
+  help: comma separated list of layer indexes for which the FeedForward layers are transferred
+  default: ''
+
+tune_fourier_layers:
+  type: str
+  help: comma separated list of layer indexes for which the fourier weights are tuned
+  default: ''
+
+tune_ff_layers:
+  type: str
+  help: comma separated list of layer indexes for which the FeedForward layers are tuned
+  default: ''
+
+# out_vars
+
+transfer_out_vars:
+  type: str
+  help: variables for which the output projection is transferred from the pre-trained model
+  default: ''
+
+transfer_out_vars_scalers:
+  type: str
+  help: multipliers for the output projection variables (while projecting)
+  default: ''
+
+tune_out_vars:
+  type: str
+  help: variables for which the output projection is tuned
+  default: ''
